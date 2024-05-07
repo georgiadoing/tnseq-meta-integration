@@ -2,7 +2,7 @@
 
 import glob 
 
-sams = glob.glob('*.sam')
+sams = glob.glob('/Users/tailob/Desktop/jax/repositories/tnseq-meta-integration/multi_fasta_SAM/*/*.sam')
 
 for s in sams:
 	datadict = {}
@@ -23,8 +23,7 @@ for s in sams:
 					
 	output = open(s[:-3]+'tabular','w')
 	output.write('Reference\tPosition\tLocus\tGene\tPlusCount\tMinusCount\tTotalCount\tProduct\tProteinID\tNote\tSequence\n')
-	datakeys = datadict.keys()
-	datakeys.sort(key=lambda x: x[1])
+	datakeys = sorted(datadict.keys(),key=lambda x: x[1])
 	for k in datakeys: 
 		output.write(k[0]+'\t'+str(k[1])+'\t\t\t')
 		output.write('%i\t%i\t%i\t\t\t\t\n' %(datadict[k][0],datadict[k][1],datadict[k][0]+datadict[k][1]))
