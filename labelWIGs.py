@@ -18,7 +18,7 @@ def read_wig(filename):
 tags = pd.read_csv('MasterTagList.csv')
 
 # Collect the names of the prot_table files 
-PTs = glob.glob('*.prot_table')
+PTs = glob.glob('tnseq-meta-integration/Files/Prot_tables/*/*.gprot_table')
 
 # Loop through the prot_table files and change the gene name to the Roary tag
 for prottable in PTs: 
@@ -31,7 +31,7 @@ for prottable in PTs:
 	pt.to_csv('Roary_'+prottable,sep='\t',header=False,index=False)
 
 # Gather the names of the wig files
-wigs = glob.glob('*.wig')
+wigs = glob.glob('tnseq-meta-integration/Files/wig_files/*/*.wig')
 strains = list(set([x.split('_')[0] for x in wigs]))
 
 # For each wig file, label the TA sites with the gene they are found in, using the Roary tags
